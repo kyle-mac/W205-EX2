@@ -1,8 +1,8 @@
-(ns wordcount
+(ns tweetwordcount
   (:use     [streamparse.specs])
   (:gen-class))
 
-(defn wordcount [options]
+(defn tweetwordcount [options]
    [
     ;; spout configuration
     {"word-spout" (python-spout-spec
