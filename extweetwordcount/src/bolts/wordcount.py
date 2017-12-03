@@ -23,12 +23,8 @@ class WordCounter(Bolt):
         # Set up cursor
         cur = conn.cursor()
 
-        try:
-            cur.execute('''CREATE TABLE tweetwordcount(word TEXT PRIMARY KEY NOT NULL,count INT NOT NULL);''')
-            print ("created table tweetwordcount")
-        except:
-            print ("Not Created")
-
+        cursor.execute("DROP TABLE IF EXISTS tweetwordcount")
+        cur.execute('''CREATE TABLE tweetwordcount(word TEXT PRIMARY KEY NOT NULL,count INT NOT NULL);''')
         cur.execute("UPDATE tweetwordcount SET count=count+1 WHERE word=%s", (word,))
 
         # If word count is 0 set to 1
