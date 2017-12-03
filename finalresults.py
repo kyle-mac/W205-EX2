@@ -7,7 +7,7 @@ try:
 	word = sys.argv[1]
 	cur.execute("SELECT word, count from tweetwordcount WHERE word = '%s';" %word)
 	result = cur.fetchone()
-	print "Total number of occurences of \"%s\": %s" %(result[0], result[1])
+	print result
 	conn.commit()
 	conn.close()
 except Exception as e:
