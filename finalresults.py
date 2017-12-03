@@ -4,10 +4,14 @@ import sys
 try:
 	conn = psycopg2.connect(database="tcount", user="postgres", password="pass", host="localhost", port="5432")
 	cur = conn.cursor()
-	word = sys.argv[1]
-	cur.execute("SELECT word, count from tweetwordcount WHERE word = '%s';" %word)
-	result = cur.fetchone()
-	print result
+	if len(sys.argv) > 1:
+		word = sys.argv[1]
+		cur.execute("SELECT word, count from tweetwordcount WHERE word = '%s';" %word)
+		result = cur.fetchone()
+		print result
+	else:
+		records = cur.fetchall()
+		print records
 	conn.commit()
 	conn.close()
 except Exception as e:
