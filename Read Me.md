@@ -1,7 +1,7 @@
 This serves an overview for how to execute this project on a new AMI (assuming postgres is mounted and started into /data)
 
 Step 1: Run the pip installs
-  pip install tweepy
+  pip install tweepy  
   pip install psycopg2==2.6.2
 
 Step 2: Create the postgres database
