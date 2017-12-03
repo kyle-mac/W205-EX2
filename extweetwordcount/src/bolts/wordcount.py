@@ -25,10 +25,10 @@ class WordCounter(Bolt):
 
         # If word count is 0 set to 1
         if cur.rowcount == 0:
-            cur.execute("INSERT INTO tweetwordcount (word,count) VALUES (%s, 1)", (word,))
+            cur.execute("INSERT INTO tcount.tweetwordcount (word,count) VALUES (%s, 1)", (word,))
         conn.commit()
 
         # Otherwise increment by 1
-        cur.execute("UPDATE tweetwordcount SET count=count+1 WHERE word=%s", (word,))
+        cur.execute("UPDATE tcount.tweetwordcount SET count=count+1 WHERE word=%s", (word,))
 
         conn.close()
