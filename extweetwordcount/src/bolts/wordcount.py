@@ -22,7 +22,7 @@ class WordCounter(Bolt):
 
         # Set up cursor
         cur = conn.cursor()
-        cursor.execute("SHOW TABLES") 
+        cur.execute("SHOW TABLES") 
         # If word count is 0 set to 1
         if cur.rowcount == 0:
             cur.execute("INSERT INTO tcount.tweetwordcount (word,count) VALUES (%s, 1)", (word,))
