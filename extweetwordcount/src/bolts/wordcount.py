@@ -24,12 +24,13 @@ class WordCounter(Bolt):
         cur = conn.cursor()
 
         try:
+            cur.execute('''DROP TABLE tweetwordcount;''')
             cur.execute('''CREATE TABLE tweetwordcount(word TEXT PRIMARY KEY NOT NULL,count INT NOT NULL);''')
             conn.commit()
             conn.close()
-            print "created table tweetwordcount"
+            print ("created table tweetwordcount")
         except:
-            print "Not Created"
+            print ("Not Created")
 
         # If word count is 0 set to 1
         if cur.rowcount == 0:
