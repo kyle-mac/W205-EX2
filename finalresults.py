@@ -10,7 +10,7 @@ try:
 		result = cur.fetchone()
 		print result
 	else:
-		cur.execute("SELECT word, count from Tweetwordcount order by word asc")
+		cur.execute("SELECT word, count from tweetwordcount order by word asc")
 		records = cur.fetchall()
 		print records
 	conn.commit()
