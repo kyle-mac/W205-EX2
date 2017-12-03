@@ -10,5 +10,5 @@ try:
 	print "Total number of occurences of \"%s\": %s" %(result[0], result[1])
 	conn.commit()
 	conn.close()
-except:
-    print "Error fetching query"
+except Exception as e:
+    print e
