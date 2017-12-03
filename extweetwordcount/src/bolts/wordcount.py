@@ -22,13 +22,21 @@ class WordCounter(Bolt):
 
         # Set up cursor
         cur = conn.cursor()
-        cur.execute("SHOW TABLES") 
+
+        try:
+            cur.execute('''CREATE TABLE tweetwordcount(word TEXT PRIMARY KEY NOT NULL,count INT NOT NULL);''')
+            conn.commit()
+            conn.close()
+            print "created table tweetwordcount"
+        except:
+            print "Not Created"
+
         # If word count is 0 set to 1
         if cur.rowcount == 0:
-            cur.execute("INSERT INTO tcount.tweetwordcount (word,count) VALUES (%s, 1)", (word,))
+            cur.execute("INSERT INTO tweetwordcount (word,count) VALUES (%s, 1)", (word,))
         conn.commit()
 
         # Otherwise increment by 1
-        cur.execute("UPDATE tcount.tweetwordcount SET count=count+1 WHERE word=%s", (word,))
+        cur.execute("UPDATE tweetwordcount SET count=count+1 WHERE word=%s", (word,))
 
         conn.close()
